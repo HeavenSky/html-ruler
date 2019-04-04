@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<meta charset="utf-8" />
+	<title>RulersGuides.js demo</title>
+	<style>
+		.demo {
+			padding-top: 28px;
+			font: 18px Arial;
+		}
+
+		.main-wrapper {
+			margin: 0 auto;
+			width: 900px;
+			color: #555;
+		}
+
+		em {
+			color: #4183c4;
+			;
+			font-weight: bold;
+			font-style: normal;
+		}
+
+		ul {
+			display: block;
+			float: left;
+			margin: 0 0 25px 25px;
+			padding: 0;
+			list-style: none;
+			;
+			font-size: 20px;
+		}
+
+		ul li {
+			padding: 10px 0;
+		}
+
+		ul span {
+			display: inline-block;
+		}
+
+		ul.list1 span {
+			width: 250px;
+		}
+
+		ul.list2 {
+			margin-left: 80px;
+		}
+
+		ul.list2 span {
+			display: inline-block;
+			width: 185px;
+		}
+
+		kbd {
+			display: inline-block;
+			padding: 0;
+			padding: 3px 7px;
+			border: solid 1px #ccc;
+			border-radius: 5px;
+			background-color: #eee;
+			box-shadow: 1px 2px 2px #ddd;
+			;
+			font: 20px Arial;
+		}
+
+		a {
+			color: red;
+		}
+	</style>
+</head>
+<body class="demo">
+	<div class="main-wrapper">
+		<p><em>RulersGuides.js</em> is a Javascript library which enables Photoshop-like rulers and guides interface on a web page</p>
+		<p>To create a guide, click the vertical or horizontal ruler and drag-n-drop it somewhere outside the ruler</p>
+		<p>It is possible to open/save created guides as grids using corresponding hotkeys (Note: grids will be saved on a page location basis, so it's not possible to use the same grids in another browser window/tab)</p>
+		<p>Rulers can be locked, so that one of the rulers will scroll along the page and the other will be always visible</p>
+		<p>Guides can be snapped to defined number of pixels</p>
+		<p>Detailed info mode is available, which shows position and size of regions created by the guides.</p>
+		<p>Guides can be snapped to DOM elements (experimental, use with caution, can be slow or unresponsive on pages with lots of elements)</p>
+		<p style="margin-bottom: 0">Keyboard controls:</p>
+		<ul class="list1" id="test">
+			<li><span>Toggle rulers</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>R</kbd></li>
+			<li><span>Toggle guides</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd></li>
+			<li><span>Toggle rulers and guides</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>A</kbd></li>
+			<li><span>Lock/unlock rulers</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd></li>
+			<li><span>Toggle detailed info</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>I</kbd></li>
+		</ul>
+		<ul class="list2">
+			<li><span>Clear all guides</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd></li>
+			<li><span>Save grid dialog</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd></li>
+			<li><span>Open grid dialog</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd></li>
+			<li><span>Open Snap to dialog</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd></li>
+			<li><span>Toggle snap to DOM</span> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd></li>
+		</ul>
+		<p>Clicking the link or bookmark deletes the rulers and all the guides or starts from the scratch</p>
+		<p>Developed by Mark Rolich &copy; 2013</p>
+		<p>Licensed under the MIT license</p>
+	</div>
+	<link rel="stylesheet" type="text/css" href="ruler.css" />
+	<script type="text/javascript" src="ruler.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+@red: #ff7e79;
+@blue: #9437ff;
+@hover: #3b94ec;
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+.mask-back-fixed {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+#RulersGuides {
+	position: fixed;
+	top: 0;
+	left: 0;
+	.rg-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+	}
+	.guide {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 9991;
+		font-size: 0;
+	}
+	.guide.v {
+		width: 1px;
+		height: 7000px;
+		border-right: solid 1px @blue;
+		cursor: col-resize;
+	}
+	.guide.h {
+		width: 3000px;
+		height: 1px;
+		border-bottom: solid 1px @blue;
+		cursor: row-resize;
+	}
+	.info {
+		position: relative;
+		width: 50px;
+		height: 25px;
+		border: solid 1px #ccc;
+		background-color: #eee;
+		color: #000;
+		text-align: center;
+		font-size: 13px;
+		line-height: 25px;
+	}
+	.guide.v .info {
+		left: 2px;
+	}
+	.guide.h .info {
+		top: 2px;
+	}
+	.unselectable {
+		user-select: none;
+	}
+	.ruler {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 9990;
+		background-color: #ccc;
+	}
+	.ruler .label {
+		color: #000;
+		font: 12px Arial;
+	}
+	.ruler,
+	.ruler span {
+		font-size: 0;
+	}
+	.ruler.h {
+		left: -1px;
+		padding-top: 14px;
+		width: 3000px;
+		border-bottom: solid 1px #000;
+		white-space: nowrap;
+	}
+	.ruler.v {
+		top: -1px;
+		padding-left: 16px;
+		width: 25px;
+		height: 7000px;
+		border-right: solid 1px #000;
+	}
+	.ruler.h span {
+		display: inline-block;
+		width: 1px;
+		height: 9px;
+		border-left: solid 1px #999;
+		vertical-align: bottom;
+		zoom: 1;
+	}
+	.ruler.v span {
+		display: block;
+		margin-right: 0;
+		margin-left: auto;
+		width: 9px;
+		height: 1px;
+		border-top: solid 1px #999;
+	}
+	.ruler.v span.major {
+		width: 13px;
+		border-top: solid 1px #000;
+	}
+	.ruler.v span.milestone {
+		position: relative;
+		width: 17px;
+		border-top: solid 1px #000;
+	}
+	.ruler.v span.label {
+		position: absolute;
+		width: 9px;
+		border: 0;
+		text-align: center;
+		font-size: 9px;
+	}
+	.ruler.h span.major {
+		height: 13px;
+		border-left: solid 1px #000;
+	}
+	.ruler.h span.milestone {
+		position: relative;
+		height: 17px;
+		border-left: solid 1px #000;
+	}
+	.ruler.h span.label {
+		position: absolute;
+		top: -14px;
+		width: 9px;
+		border: 0;
+		text-align: center;
+		font-size: 9px;
+	}
+	.ruler.h .l10 {
+		left: -5px;
+	}
+	.ruler.h .l100 {
+		left: -7px;
+	}
+	.ruler.h .l1000 {
+		left: -10px;
+	}
+	.ruler.v .l10,
+	.ruler.v .l100,
+	.ruler.v .l1000 {
+		top: -7px;
+	}
+	.ruler.v .l10 {
+		left: -12px;
+	}
+	.ruler.v .l100 {
+		left: -17px;
+	}
+	.ruler.v .l1000 {
+		left: -23px;
+	}
+	.menu-btn {
+		position: fixed;
+		top: 2px;
+		left: 3px;
+		z-index: 9998;
+		width: 20px;
+		height: 20px;
+		border-radius: 2px;
+		background-color: @red;
+		color: #fff;
+		text-align: left;
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 9px;
+		opacity: .5;
+		cursor: pointer;
+	}
+	.rg-menu {
+		position: fixed;
+		top: 22px;
+		left: 3px;
+		z-index: 9999;
+		display: none;
+		margin: 0;
+		padding: 0;
+		box-shadow: 2px 2px 10px #ccc;
+		list-style: 0;
+		font: 13px Arial;
+	}
+	.rg-menu li {
+		padding: 0;
+		border-bottom: solid 1px #999;
+		text-align: left;
+	}
+	.rg-menu a {
+		display: block;
+		padding: 5px;
+		background-color: #777;
+		color: #fff;
+		text-decoration: none;
+		line-height: 18px;
+	}
+	.rg-menu a:hover,
+	.rg-menu a.selected {
+		background-color: @hover;
+		color: #fff;
+	}
+	.rg-menu a.disabled {
+		color: #ccc;
+	}
+	.rg-menu .desc {
+		display: inline-block;
+		width: 170px;
+	}
+	.dialog {
+		position: fixed;
+		z-index: 9999;
+		display: none;
+		background-color: #777;
+		box-shadow: 2px 2px 10px #ccc;
+		color: #fff;
+		font-size: 13px;
+	}
+	.dialog button {
+		border: none;
+		border-radius: 3px;
+		background-color: #eaeaea;
+		background-image: linear-gradient(#fafafa, #eaeaea);
+		background-repeat: repeat-x;
+		color: #333;
+		text-shadow: 0 1px 0 fade(#fff, 90%);
+		cursor: pointer;
+	}
+	.dialog input,
+	.dialog select,
+	.dialog button {
+		margin: 3px;
+		padding: 3px;
+		font-size: 13px;
+	}
+	.dialog .title-bar {
+		padding: 5px;
+		background-color: #aaa;
+		font-weight: bold;
+	}
+	.dialog .wrapper {
+		padding: 10px;
+	}
+	.open-dialog select,
+	.open-dialog button {
+		display: block;
+		float: left;
+	}
+	.open-dialog .ok-btn,
+	.open-dialog .cancel-btn {
+		margin: 10px 3px;
+	}
+	.open-dialog .ok-btn {
+		clear: both;
+	}
+	.snap-dialog label {
+		padding: 3px;
+		font-weight: bold;
+	}
+	.snap-dialog .ok-btn {
+		margin-left: 18px;
+	}
+	.snap-dialog .ok-btn,
+	.snap-dialog .cancel-btn {
+		margin-top: 10px;
+	}
+	.snap-dialog .rg-y-label {
+		margin-left: 10px;
+	}
+	#rg-x-snap,
+	#rg-y-snap {
+		width: 50px;
+	}
+	.info-block-wrapper {
+		position: absolute;
+		z-index: 9989;
+	}
+	.info-block {
+		position: absolute;
+		text-align: left;
+	}
+	.info-block.even {
+		background: fade(@blue, 20%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#330000FF, endColorstr=#330000FF);
+		zoom: 1;
+	}
+	.info-block.odd {
+		background: fade(@red, 20%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FF0000, endColorstr=#33FF0000);
+		zoom: 1;
+	}
+	.info-block-txt {
+		display: inline-block;
+		padding: 5px;
+		background-color: #777;
+		color: #fff;
+		vertical-align: top;
+		font-size: 13px;
+		zoom: 1;
+	}
+}

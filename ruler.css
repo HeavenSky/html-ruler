@@ -1,0 +1,310 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+}
+.mask-back-fixed {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+#RulersGuides {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+#RulersGuides .rg-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+#RulersGuides .guide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9991;
+	font-size: 0;
+}
+#RulersGuides .guide.v {
+	width: 1px;
+	height: 1866.667vmin;
+	border-right: 1px solid #9437ff;
+	cursor: col-resize;
+}
+#RulersGuides .guide.h {
+	width: 800vmin;
+	height: 1px;
+	border-bottom: 1px solid #9437ff;
+	cursor: row-resize;
+}
+#RulersGuides .info {
+	position: relative;
+	width: 13.333vmin;
+	height: 6.667vmin;
+	border: 1px solid #ccc;
+	background-color: #eee;
+	color: #000;
+	text-align: center;
+	font-size: 3.467vmin;
+	line-height: 6.667vmin;
+}
+#RulersGuides .guide.v .info {
+	left: .533vmin;
+}
+#RulersGuides .guide.h .info {
+	top: .533vmin;
+}
+#RulersGuides .unselectable {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#RulersGuides .ruler {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9990;
+	background-color: #ccc;
+}
+#RulersGuides .ruler .label {
+	color: #000;
+	font: 3.2vmin Arial;
+}
+#RulersGuides .ruler,
+#RulersGuides .ruler span {
+	font-size: 0;
+}
+#RulersGuides .ruler.h {
+	left: -1px;
+	padding-top: 3.733vmin;
+	width: 800vmin;
+	border-bottom: 1px solid #000;
+	white-space: nowrap;
+}
+#RulersGuides .ruler.v {
+	top: -1px;
+	padding-left: 4.267vmin;
+	width: 6.667vmin;
+	height: 1866.667vmin;
+	border-right: 1px solid #000;
+}
+#RulersGuides .ruler.h span {
+	display: inline-block;
+	width: 1px;
+	height: 2.4vmin;
+	border-left: 1px solid #999;
+	vertical-align: bottom;
+	zoom: 1;
+}
+#RulersGuides .ruler.v span {
+	display: block;
+	margin-right: 0;
+	margin-left: auto;
+	width: 2.4vmin;
+	height: 1px;
+	border-top: 1px solid #999;
+}
+#RulersGuides .ruler.v span.major {
+	width: 3.467vmin;
+	border-top: 1px solid #000;
+}
+#RulersGuides .ruler.v span.milestone {
+	position: relative;
+	width: 4.533vmin;
+	border-top: 1px solid #000;
+}
+#RulersGuides .ruler.v span.label {
+	position: absolute;
+	width: 2.4vmin;
+	border: 0;
+	text-align: center;
+	font-size: 2.4vmin;
+}
+#RulersGuides .ruler.h span.major {
+	height: 3.467vmin;
+	border-left: 1px solid #000;
+}
+#RulersGuides .ruler.h span.milestone {
+	position: relative;
+	height: 4.533vmin;
+	border-left: 1px solid #000;
+}
+#RulersGuides .ruler.h span.label {
+	position: absolute;
+	top: -3.733vmin;
+	width: 2.4vmin;
+	border: 0;
+	text-align: center;
+	font-size: 2.4vmin;
+}
+#RulersGuides .ruler.h .l10 {
+	left: -1.333vmin;
+}
+#RulersGuides .ruler.h .l100 {
+	left: -1.867vmin;
+}
+#RulersGuides .ruler.h .l1000 {
+	left: -2.667vmin;
+}
+#RulersGuides .ruler.v .l10,
+#RulersGuides .ruler.v .l100,
+#RulersGuides .ruler.v .l1000 {
+	top: -1.867vmin;
+}
+#RulersGuides .ruler.v .l10 {
+	left: -3.2vmin;
+}
+#RulersGuides .ruler.v .l100 {
+	left: -4.533vmin;
+}
+#RulersGuides .ruler.v .l1000 {
+	left: -6.133vmin;
+}
+#RulersGuides .menu-btn {
+	position: fixed;
+	top: .533vmin;
+	left: .8vmin;
+	z-index: 9998;
+	width: 5.333vmin;
+	height: 5.333vmin;
+	border-radius: .533vmin;
+	background-color: #ff7e79;
+	color: #fff;
+	text-align: left;
+	font-weight: 700;
+	font-size: 5.333vmin;
+	line-height: 2.4vmin;
+	opacity: .5;
+	cursor: pointer;
+}
+#RulersGuides .rg-menu {
+	position: fixed;
+	top: 5.867vmin;
+	left: .8vmin;
+	z-index: 9999;
+	display: none;
+	margin: 0;
+	padding: 0;
+	box-shadow: .533vmin .533vmin 2.667vmin #ccc;
+	list-style: 0;
+	font: 3.467vmin Arial;
+}
+#RulersGuides .rg-menu li {
+	padding: 0;
+	border-bottom: 1px solid #999;
+	text-align: left;
+}
+#RulersGuides .rg-menu a {
+	display: block;
+	padding: 1.333vmin;
+	background-color: #777;
+	color: #fff;
+	text-decoration: none;
+	line-height: 4.8vmin;
+}
+#RulersGuides .rg-menu a.selected,
+#RulersGuides .rg-menu a:hover {
+	background-color: #3b94ec;
+	color: #fff;
+}
+#RulersGuides .rg-menu a.disabled {
+	color: #ccc;
+}
+#RulersGuides .rg-menu .desc {
+	display: inline-block;
+	width: 45.333vmin;
+}
+#RulersGuides .dialog {
+	position: fixed;
+	z-index: 9999;
+	display: none;
+	background-color: #777;
+	box-shadow: .533vmin .533vmin 2.667vmin #ccc;
+	color: #fff;
+	font-size: 3.467vmin;
+}
+#RulersGuides .dialog button {
+	border: none;
+	border-radius: .8vmin;
+	background-color: #eaeaea;
+	background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+	background-image: linear-gradient(#fafafa, #eaeaea);
+	background-repeat: repeat-x;
+	color: #333;
+	text-shadow: 0 1px 0 hsla(0, 0%, 100%, .9);
+	cursor: pointer;
+}
+#RulersGuides .dialog button,
+#RulersGuides .dialog input,
+#RulersGuides .dialog select {
+	margin: .8vmin;
+	padding: .8vmin;
+	font-size: 3.467vmin;
+}
+#RulersGuides .dialog .title-bar {
+	padding: 1.333vmin;
+	background-color: #aaa;
+	font-weight: 700;
+}
+#RulersGuides .dialog .wrapper {
+	padding: 2.667vmin;
+}
+#RulersGuides .open-dialog button,
+#RulersGuides .open-dialog select {
+	display: block;
+	float: left;
+}
+#RulersGuides .open-dialog .cancel-btn,
+#RulersGuides .open-dialog .ok-btn {
+	margin: 2.667vmin .8vmin;
+}
+#RulersGuides .open-dialog .ok-btn {
+	clear: both;
+}
+#RulersGuides .snap-dialog label {
+	padding: .8vmin;
+	font-weight: 700;
+}
+#RulersGuides .snap-dialog .ok-btn {
+	margin-left: 4.8vmin;
+}
+#RulersGuides .snap-dialog .cancel-btn,
+#RulersGuides .snap-dialog .ok-btn {
+	margin-top: 2.667vmin;
+}
+#RulersGuides .snap-dialog .rg-y-label {
+	margin-left: 2.667vmin;
+}
+#RulersGuides #rg-x-snap,
+#RulersGuides #rg-y-snap {
+	width: 13.333vmin;
+}
+#RulersGuides .info-block-wrapper {
+	position: absolute;
+	z-index: 9989;
+}
+#RulersGuides .info-block {
+	position: absolute;
+	text-align: left;
+}
+#RulersGuides .info-block.even {
+	background: rgba(148, 55, 255, .2);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#330000FF, endColorstr=#330000FF);
+	zoom: 1;
+}
+#RulersGuides .info-block.odd {
+	background: rgba(255, 126, 121, .2);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FF0000, endColorstr=#33FF0000);
+	zoom: 1;
+}
+#RulersGuides .info-block-txt {
+	display: inline-block;
+	padding: 1.333vmin;
+	background-color: #777;
+	color: #fff;
+	vertical-align: top;
+	font-size: 3.467vmin;
+	zoom: 1;
+}
