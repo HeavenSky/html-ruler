@@ -11,6 +11,8 @@ Automatically add a ruler in your html page
 * Adaptive Device Screen Size(use vmin css style)
 * Support Less Style
 * When using ruler, lock the body/html
+* Custom Config and Switch
+* Fix many bugs
 
 ### Example
 Also you can see demo file [demo.html](https://raw.githubusercontent.com/HeavenSky/html-ruler/master/demo.html).

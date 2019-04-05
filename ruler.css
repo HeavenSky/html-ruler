@@ -12,6 +12,20 @@ html {
 	position: fixed;
 	top: 0;
 	left: 0;
+	font-family: Monaco, Menlo, Verdana, Consolas, Courier, monospace;
+}
+#RulersGuides .rg-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background-image: url(https://images.unsplash.com/photo-1540040599774-639d4a254c21);
+	background-position: 0 0;
+	background-size: 100% auto;
+	opacity: .7;
 }
 #RulersGuides .rg-overlay {
 	position: absolute;
@@ -27,33 +41,33 @@ html {
 	font-size: 0;
 }
 #RulersGuides .guide.v {
-	width: 1px;
-	height: 1866.667vmin;
-	border-right: 1px solid #9437ff;
+	width: 2vmin;
+	height: 1600vmin;
+	border-left: 1px solid #9437ff;
 	cursor: col-resize;
 }
 #RulersGuides .guide.h {
-	width: 800vmin;
-	height: 1px;
-	border-bottom: 1px solid #9437ff;
+	width: 1600vmin;
+	height: 2vmin;
+	border-top: 1px solid #9437ff;
 	cursor: row-resize;
 }
 #RulersGuides .info {
 	position: relative;
-	width: 13.333vmin;
-	height: 6.667vmin;
+	width: 10vmin;
+	height: 5vmin;
 	border: 1px solid #ccc;
 	background-color: #eee;
 	color: #000;
 	text-align: center;
-	font-size: 3.467vmin;
-	line-height: 6.667vmin;
+	font-size: 2.6vmin;
+	line-height: 5vmin;
 }
 #RulersGuides .guide.v .info {
-	left: .533vmin;
+	left: .4vmin;
 }
 #RulersGuides .guide.h .info {
-	top: .533vmin;
+	top: .4vmin;
 }
 #RulersGuides .unselectable {
 	-webkit-user-select: none;
@@ -70,7 +84,7 @@ html {
 }
 #RulersGuides .ruler .label {
 	color: #000;
-	font: 3.2vmin Arial;
+	font-size: 2.4vmin;
 }
 #RulersGuides .ruler,
 #RulersGuides .ruler span {
@@ -78,22 +92,22 @@ html {
 }
 #RulersGuides .ruler.h {
 	left: -1px;
-	padding-top: 3.733vmin;
-	width: 800vmin;
+	padding-top: 2.8vmin;
+	width: 600vmin;
 	border-bottom: 1px solid #000;
 	white-space: nowrap;
 }
 #RulersGuides .ruler.v {
 	top: -1px;
-	padding-left: 4.267vmin;
-	width: 6.667vmin;
-	height: 1866.667vmin;
+	padding-left: 3.2vmin;
+	width: 5vmin;
+	height: 1400vmin;
 	border-right: 1px solid #000;
 }
 #RulersGuides .ruler.h span {
 	display: inline-block;
 	width: 1px;
-	height: 2.4vmin;
+	height: 1.8vmin;
 	border-left: 1px solid #999;
 	vertical-align: bottom;
 	zoom: 1;
@@ -102,94 +116,94 @@ html {
 	display: block;
 	margin-right: 0;
 	margin-left: auto;
-	width: 2.4vmin;
+	width: 1.8vmin;
 	height: 1px;
 	border-top: 1px solid #999;
 }
 #RulersGuides .ruler.v span.major {
-	width: 3.467vmin;
+	width: 2.6vmin;
 	border-top: 1px solid #000;
 }
 #RulersGuides .ruler.v span.milestone {
 	position: relative;
-	width: 4.533vmin;
+	width: 3.4vmin;
 	border-top: 1px solid #000;
 }
 #RulersGuides .ruler.v span.label {
 	position: absolute;
-	width: 2.4vmin;
+	width: 1.8vmin;
 	border: 0;
 	text-align: center;
-	font-size: 2.4vmin;
+	font-size: 1.8vmin;
 }
 #RulersGuides .ruler.h span.major {
-	height: 3.467vmin;
+	height: 2.6vmin;
 	border-left: 1px solid #000;
 }
 #RulersGuides .ruler.h span.milestone {
 	position: relative;
-	height: 4.533vmin;
+	height: 3.4vmin;
 	border-left: 1px solid #000;
 }
 #RulersGuides .ruler.h span.label {
 	position: absolute;
-	top: -3.733vmin;
-	width: 2.4vmin;
+	top: -2.8vmin;
+	width: 1.8vmin;
 	border: 0;
 	text-align: center;
-	font-size: 2.4vmin;
+	font-size: 1.8vmin;
 }
 #RulersGuides .ruler.h .l10 {
-	left: -1.333vmin;
+	left: -1vmin;
 }
 #RulersGuides .ruler.h .l100 {
-	left: -1.867vmin;
+	left: -1.4vmin;
 }
 #RulersGuides .ruler.h .l1000 {
-	left: -2.667vmin;
+	left: -2vmin;
 }
 #RulersGuides .ruler.v .l10,
 #RulersGuides .ruler.v .l100,
 #RulersGuides .ruler.v .l1000 {
-	top: -1.867vmin;
+	top: -1.4vmin;
 }
 #RulersGuides .ruler.v .l10 {
-	left: -3.2vmin;
+	left: -2.4vmin;
 }
 #RulersGuides .ruler.v .l100 {
-	left: -4.533vmin;
+	left: -3.4vmin;
 }
 #RulersGuides .ruler.v .l1000 {
-	left: -6.133vmin;
+	left: -4.6vmin;
 }
 #RulersGuides .menu-btn {
 	position: fixed;
-	top: .533vmin;
-	left: .8vmin;
+	top: .4vmin;
+	left: .6vmin;
 	z-index: 9998;
-	width: 5.333vmin;
-	height: 5.333vmin;
-	border-radius: .533vmin;
+	width: 4vmin;
+	height: 4vmin;
+	border-radius: .4vmin;
 	background-color: #ff7e79;
 	color: #fff;
 	text-align: left;
 	font-weight: 700;
-	font-size: 5.333vmin;
-	line-height: 2.4vmin;
+	font-size: 4vmin;
+	line-height: 1.8vmin;
 	opacity: .5;
 	cursor: pointer;
 }
 #RulersGuides .rg-menu {
 	position: fixed;
-	top: 5.867vmin;
-	left: .8vmin;
+	top: 4.4vmin;
+	left: .6vmin;
 	z-index: 9999;
 	display: none;
 	margin: 0;
 	padding: 0;
-	box-shadow: .533vmin .533vmin 2.667vmin #ccc;
+	box-shadow: .4vmin .4vmin 2vmin #ccc;
 	list-style: 0;
-	font: 3.467vmin Arial;
+	font-size: 2.6vmin;
 }
 #RulersGuides .rg-menu li {
 	padding: 0;
@@ -198,11 +212,11 @@ html {
 }
 #RulersGuides .rg-menu a {
 	display: block;
-	padding: 1.333vmin;
+	padding: 1vmin;
 	background-color: #777;
 	color: #fff;
 	text-decoration: none;
-	line-height: 4.8vmin;
+	line-height: 3.6vmin;
 }
 #RulersGuides .rg-menu a.selected,
 #RulersGuides .rg-menu a:hover {
@@ -214,20 +228,66 @@ html {
 }
 #RulersGuides .rg-menu .desc {
 	display: inline-block;
-	width: 45.333vmin;
+	width: 34vmin;
 }
 #RulersGuides .dialog {
 	position: fixed;
 	z-index: 9999;
 	display: none;
 	background-color: #777;
-	box-shadow: .533vmin .533vmin 2.667vmin #ccc;
+	box-shadow: .4vmin .4vmin 2vmin #ccc;
 	color: #fff;
-	font-size: 3.467vmin;
+	font-size: 2.6vmin;
+}
+#RulersGuides .config-dialog {
+	top: 50%;
+	left: 50%;
+	width: 90%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+#RulersGuides .config-dialog b {
+	color: #ff7e79;
+}
+#RulersGuides .config-dialog label {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+#RulersGuides .config-dialog label .ipt {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+#RulersGuides .config-dialog table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#RulersGuides .config-dialog table button {
+	white-space: nowrap;
+}
+#RulersGuides .config-dialog td,
+#RulersGuides .config-dialog th {
+	border: 1px solid #fff;
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 #RulersGuides .dialog button {
 	border: none;
-	border-radius: .8vmin;
+	border-radius: .6vmin;
 	background-color: #eaeaea;
 	background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
 	background-image: linear-gradient(#fafafa, #eaeaea);
@@ -239,47 +299,47 @@ html {
 #RulersGuides .dialog button,
 #RulersGuides .dialog input,
 #RulersGuides .dialog select {
-	margin: .8vmin;
-	padding: .8vmin;
-	font-size: 3.467vmin;
+	margin: .6vmin;
+	padding: .6vmin;
+	border: 1px solid #fff;
+	font-size: 2.6vmin;
 }
 #RulersGuides .dialog .title-bar {
-	padding: 1.333vmin;
+	padding: 1vmin;
 	background-color: #aaa;
 	font-weight: 700;
 }
 #RulersGuides .dialog .wrapper {
-	padding: 2.667vmin;
+	padding: 2vmin;
 }
 #RulersGuides .open-dialog button,
 #RulersGuides .open-dialog select {
-	display: block;
-	float: left;
+	display: inline-block;
 }
 #RulersGuides .open-dialog .cancel-btn,
 #RulersGuides .open-dialog .ok-btn {
-	margin: 2.667vmin .8vmin;
+	margin: 2vmin .6vmin;
 }
 #RulersGuides .open-dialog .ok-btn {
 	clear: both;
 }
 #RulersGuides .snap-dialog label {
-	padding: .8vmin;
+	padding: .6vmin;
 	font-weight: 700;
 }
 #RulersGuides .snap-dialog .ok-btn {
-	margin-left: 4.8vmin;
+	margin-left: 3.6vmin;
 }
 #RulersGuides .snap-dialog .cancel-btn,
 #RulersGuides .snap-dialog .ok-btn {
-	margin-top: 2.667vmin;
+	margin-top: 2vmin;
 }
 #RulersGuides .snap-dialog .rg-y-label {
-	margin-left: 2.667vmin;
+	margin-left: 2vmin;
 }
 #RulersGuides #rg-x-snap,
 #RulersGuides #rg-y-snap {
-	width: 13.333vmin;
+	width: 10vmin;
 }
 #RulersGuides .info-block-wrapper {
 	position: absolute;
@@ -301,10 +361,10 @@ html {
 }
 #RulersGuides .info-block-txt {
 	display: inline-block;
-	padding: 1.333vmin;
+	padding: 1vmin;
 	background-color: #777;
 	color: #fff;
 	vertical-align: top;
-	font-size: 3.467vmin;
+	font-size: 2.6vmin;
 	zoom: 1;
 }
