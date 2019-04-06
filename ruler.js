@@ -787,8 +787,7 @@ window.htmlRuler = /*  */ !(function () {
         toggleGuides();
         wrapper.style.display = 'block';
         rgBackground.style.display = 'block';
-        document.querySelector('.ruler.v').style.display = 'none';
-        document.querySelector('.ruler.h').style.display = 'none';
+        handlerClose();
       };
       var customProps = {};
       var currentProp = '';
