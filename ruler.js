@@ -578,18 +578,16 @@ window.htmlRuler = /*  */ !(function () {
           rgContainer.appendChild(dialog);
 
           evt.attach('click', delBtn, function () {
-            if (window.confirm('Are you sure ?')) {
-              if (select.options.length > 0) {
-                removeGrid(select.options[select.selectedIndex].value);
+            if (select.options.length > 0) {
+              removeGrid(select.options[select.selectedIndex].value);
 
-                select.removeChild(
-                  select.options[select.selectedIndex]
-                );
-              }
+              select.removeChild(
+                select.options[select.selectedIndex]
+              );
+            }
 
-              if (select.options.length === 0) {
-                self.close();
-              }
+            if (select.options.length === 0) {
+              self.close();
             }
           });
 
@@ -657,9 +655,9 @@ window.htmlRuler = /*  */ !(function () {
         updateTable();
         updateSelect();
       };
-      var center = create('div', '<b>Get Grids Center Element, And Transfer To top/right/bottom/left Grids</b><br/>1. save old grids<br/>2. hide all rulers/grids/dialogs<br/>3. get center element<br/><b>Below is current grids:</b>');
+      var center = create('div', '<b>Get Grids Intersection Elements, and Transfer Elements TOP/RIGHT/BOTTOM/LEFT Boundary into grids</b><br/>1. save old grids<br/>2. hide ruler/grid/dialog<br/>3. get grids intersection<br/>4. get elements and boundary<br/><b>Below is current grids:</b>');
       var gridDiv = create('div');
-      var ggceBtn = create('button', 'Start Grids Center');
+      var cgeBtn = create('button', 'Cross Grids Elements');
       center.appendChild(gridDiv);
       var gridData = { v: [], h: [] };
       function updateGrids() {
@@ -680,13 +678,12 @@ window.htmlRuler = /*  */ !(function () {
             }
           }
         }
-        gridData.v.sort();
-        gridData.h.sort();
+        gridData.v.sort(function (a, b) { return a - b; });
+        gridData.h.sort(function (a, b) { return a - b; });
         gridDiv.innerHTML = 'left: ' + gridData.v.join() + '<br/>top: ' + gridData.h.join();
       }
-      ggceBtn.onclick = function () {
+      cgeBtn.onclick = function () {
         if (gridData.v.length && gridData.h.length) {
-          saveGrid(new Date().toLocaleString());
           guideStatus = 1;
           rulerStatus = 1;
           toggleGuides();
@@ -782,6 +779,17 @@ window.htmlRuler = /*  */ !(function () {
         updateStyle();
         updateTable();
       };
+      var haha = create('button', 'HaHa Smile :)');
+      haha.onclick = function () {
+        rulerStatus = 0;
+        guideStatus = 0;
+        toggleRulers();
+        toggleGuides();
+        wrapper.style.display = 'block';
+        rgBackground.style.display = 'block';
+        document.querySelector('.ruler.v').style.display = 'none';
+        document.querySelector('.ruler.h').style.display = 'none';
+      };
       var customProps = {};
       var currentProp = '';
       var currentValue = '';
@@ -844,7 +852,7 @@ window.htmlRuler = /*  */ !(function () {
       };
 
       var bgImage = create('label', 'bgImage: ');
-      var bgImageInput = create('input', null, { type: 'number', class: 'ipt' });
+      var bgImageInput = create('input', null, { class: 'ipt' });
       bgImage.appendChild(bgImageInput);
       bgImageInput.onchange = function () {
         rgBackground.style.backgroundImage = 'url(' + bgImageInput.value + ')';
@@ -885,13 +893,18 @@ window.htmlRuler = /*  */ !(function () {
       dialogWrapper.appendChild(ruleVisible);
       dialogWrapper.appendChild(bgVisible);
       dialogWrapper.appendChild(scrollLock);
+      dialogWrapper.appendChild(create('hr'));
       dialogWrapper.appendChild(center);
       dialogWrapper.appendChild(create('hr'));
-      dialogWrapper.appendChild(ggceBtn);
-      dialogWrapper.appendChild(refresh);
       dialogWrapper.appendChild(end);
+      dialogWrapper.appendChild(refresh);
+      dialogWrapper.appendChild(cgeBtn);
+      dialogWrapper.appendChild(haha);
       function updateStyle() {
         currentStyle = getStyle(rgBackground);
+        ruleVisibleInput.checked = document.querySelector('.ruler').style.display === 'block';
+        bgVisibleInput.checked = rgBackground.style.display === 'block';
+        scrollLockInput.checked = MaskHelper.isLock();
       }
       function updateTable() {
         var innerTable = '<thead><tr><th>Prop</th><th>Value</th><th>Action</th></tr></thead>';
@@ -976,13 +989,9 @@ window.htmlRuler = /*  */ !(function () {
       hGuides.unshift(0);
       hGuides.push(doc.clientHeight);
 
-      vGuides = vGuides.sort(function (a, b) {
-        return a - b;
-      });
+      vGuides = vGuides.sort(function (a, b) { return a - b; });
 
-      hGuides = hGuides.sort(function (a, b) {
-        return a - b;
-      });
+      hGuides = hGuides.sort(function (a, b) { return a - b; });
 
       for (i = 0; i < hGuides.length - 1; i += 1) {
         j = 0;
@@ -1083,13 +1092,8 @@ window.htmlRuler = /*  */ !(function () {
         y.push(dm[3]);
       }
 
-      x = getUnique(x).sort(function (a, b) {
-        return a - b;
-      });
-
-      y = getUnique(y).sort(function (a, b) {
-        return a - b;
-      });
+      x = getUnique(x).sort(function (a, b) { return a - b; });
+      y = getUnique(y).sort(function (a, b) { return a - b; });
 
       return [x, y];
     };
@@ -1719,13 +1723,23 @@ window.htmlRuler = /*  */ !(function () {
     };
     var html = document.scrollingElement || document.documentElement;
     var body = document.body;
+
+    if (!fixCls || typeof fixCls !== 'string') {
+      fixCls = '';
+    }
     return {
+      isLock: function () {
+        var htmlClass = ' ' + html.className.replace(/\s+/g, ' ') + ' ';
+        var bodyClass = ' ' + body.className.replace(/\s+/g, ' ') + ' ';
+        var lockClass = ' ' + fixCls.replace(/\s+/g, ' ') + ' ';
+        return htmlClass.indexOf(lockClass) > -1 || bodyClass.indexOf(lockClass) > -1;
+      },
       openMask: function () {
         var root = document.scrollingElement;
         if (!root) {
           root = html.scrollHeight > body.scrollHeight ? html : body;
         }
-        if (html.className.indexOf(fixCls) > -1 && body.className.indexOf(fixCls) > -1) {
+        if (MaskHelper.isLock()) {
           return;
         }
 
@@ -1739,7 +1753,7 @@ window.htmlRuler = /*  */ !(function () {
         root.style.left = -offset.left + 'px';
       },
       closeMask: function () {
-        if (html.className.indexOf(fixCls) < 0 && body.className.indexOf(fixCls) < 0) {
+        if (!MaskHelper.isLock()) {
           return;
         }
 
@@ -1788,6 +1802,24 @@ window.htmlRuler = /*  */ !(function () {
     RELEASE: 'mouseup'
   };
   var evt = new Event();
+  evt.attach('error', window, function (e) {
+    var error = e && e.error;
+    var message = error && error.message;
+    var stack = error && error.stack;
+    window.alert(message + '\n----------\n' + stack);
+    return true;
+  });
   var dragdrop = new Dragdrop(evt);
-  return new RulersGuides(evt, dragdrop);
+  var rg = new RulersGuides(evt, dragdrop);
+
+  setTimeout(function () {
+    var vw = document.documentElement.clientWidth;
+    var vh = document.documentElement.clientHeight;
+    if (vw / vh > 9 / 16) {
+      // 425*706  85vmin * 140vmin
+      document.querySelector('.config-dialog').style.transform = 'translate(-50%, -50%) scale(' +
+      (vw > vh ? 5 / 7 : (vw / vh)).toFixed(3) + ')';
+    }
+  }, 300);
+  return rg;
 }());

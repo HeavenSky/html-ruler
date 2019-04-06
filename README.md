@@ -13,6 +13,7 @@ Automatically add a ruler in your html page
 * When using ruler, lock the body/html
 * Custom Config and Switch
 * Fix many bugs
+* Happy Feature Button: HAHA
 
 ### Example
 Also you can see demo file [demo.html](https://raw.githubusercontent.com/HeavenSky/html-ruler/master/demo.html).
