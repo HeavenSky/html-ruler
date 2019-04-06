@@ -13,6 +13,7 @@ Automatically add a ruler in your html page
 * When using ruler, lock the body/html
 * Custom Config and Switch
 * Fix many bugs
+* Prevent mobile pull refresh
 * Happy Feature Button: HAHA
 
 ### Example

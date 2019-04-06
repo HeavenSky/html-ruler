@@ -29,10 +29,14 @@ window.htmlRuler = /*  */ !(function () {
       }
 
       return handler.apply(element, [evt, function (ev) {
-        var e = ev || event;
+        var e = ev || window.event;
         var src = e.srcElement || e.target;
         if (e.targetTouches && e.targetTouches[0]) {
-          e = e.targetTouches[0];
+          var touchEvent = e.targetTouches[0];
+          if (e.preventDefault) {
+            touchEvent.preventDefault = e.preventDefault.bind(e);
+          }
+          e = touchEvent;
         }
         listener(e, src);
       }, useCapture]);
@@ -97,6 +101,7 @@ window.htmlRuler = /*  */ !(function () {
     var gHeight = Math.max(body.scrollHeight, body.offsetHeight,
       doc.clientHeight, doc.scrollHeight, doc.offsetHeight);
     var move = function (e) {
+      evt.prevent(e); // to prevent mobile pull refresh
       var xDiff = e.clientX - elem.posX;
       var yDiff = e.clientY - elem.posY;
       var x = xDiff - (xDiff % elem.snap) + 'px';
