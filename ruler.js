@@ -828,6 +828,7 @@ window.htmlRuler = /*  */ !(function () {
         });
         currentValue = currentStyle[prop] || '';
         input.value = currentValue;
+        select.blur();
       };
       input.onchange = function () {
         currentValue = input.value;
@@ -1819,10 +1820,11 @@ window.htmlRuler = /*  */ !(function () {
   setTimeout(function () {
     var vw = document.documentElement.clientWidth;
     var vh = document.documentElement.clientHeight;
-    if (vw / vh > 9 / 16) {
-      // 425*706  85vmin * 140vmin
-      document.querySelector('.config-dialog').style.transform = 'translate(-50%, -50%) scale(' +
-      (vw > vh ? 5 / 7 : (vw / vh)).toFixed(3) + ')';
+    if (vw / vh > 5 / 7) {
+      // 425*706 -- 85vmin*140vmin -- vw/vh>5/7
+      var rate = (5 / 7) * (vw > vh ? 1 : vh / vw);
+      document.querySelector('.config-dialog').style.transform =
+      'translate(-50%, -50%) scale(' + rate.toFixed(3) + ')';
     }
   }, 300);
   return rg;
