@@ -1,10 +1,10 @@
-### Fork
-Forked from [mark-rolich/RulersGuides.js](https://github.com/mark-rolich/RulersGuides.js)
-But do many changes, see details in below.
+### Reference
+First PC edition Forked from [mark-rolich/RulersGuides.js](https://github.com/mark-rolich/RulersGuides.js) and [Demo](http://mark-rolich.github.io/RulersGuides.js). Automatically add a ruler in your html page.
+But do many changes, see details Additional Features in below. And Support Mobile Device Specially.
 
 ### Docs
-Automatically add a ruler in your html page
-[Demo](http://mark-rolich.github.io/RulersGuides.js)
+Waiting for Typing...
+Maybe a gif.
 
 ### Additional Features
 * Support Mobile Device(Touch Event)
@@ -17,13 +17,18 @@ Automatically add a ruler in your html page
 * Happy Feature Button: HAHA
 
 ### Example
-Also you can see demo file [demo.html](https://raw.githubusercontent.com/HeavenSky/html-ruler/master/demo.html).
+Also you can see demo [HTML RULER](https://heavensky.github.io/html-ruler/demo.html).
 ```html
 <body>
 	<!-- other html -->
 	<link rel="stylesheet" href="<domain-path>/html-ruler/ruler.css" />
 	<script type="text/javascript" src="<domain-path>/html-ruler/ruler.js"></script>
 </body>
+```
+Or use npm package `npm i html-ruler`
+```js
+import 'html-ruler';
+import 'html-ruler/ruler.css';
 ```
 
 ### License
