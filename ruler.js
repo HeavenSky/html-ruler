@@ -9,66 +9,58 @@ window.htmlRuler = /*  */ !(function () {
    */
   var Event = function () {
     'use strict';
-    this.attach = function (evtName, element, listener, capture) {
-      var evt = '';
-      var useCapture = (capture === undefined) ? true : capture;
-      var handler = null;
+    this.attach = function (evt, ele, listener, capture) {
+      var target = ele || document;
 
-      if (window.addEventListener === undefined) {
-        evt = 'on' + evtName;
-        handler = function (evtA, listenerA) {
-          element.attachEvent(evtA, listenerA);
-          return listenerA;
-        };
-      } else {
-        evt = evtName;
-        handler = function (evtA, listenerA, useCaptureA) {
-          element.addEventListener(evtA, listenerA, useCaptureA);
-          return listenerA;
-        };
-      }
+      var handler = function handler(e) {
+        var event = e || window.event;
+        var src = event.srcElement || event.target;
 
-      return handler.apply(element, [evt, function (ev) {
-        var e = ev || window.event;
-        var src = e.srcElement || e.target;
-        if (e.targetTouches && e.targetTouches[0]) {
-          var touchEvent = e.targetTouches[0];
-          if (e.preventDefault) {
-            touchEvent.preventDefault = e.preventDefault.bind(e);
+        var _ref = event.targetTouches || [];
+        var touch = _ref[0];
+
+        var proto = Object.getPrototypeOf(touch || {});
+
+        for (var k in proto) {
+          if (forloop(proto, k)) {
+            (k in event) || (event[k] = touch[k]);
           }
-          e = touchEvent;
         }
-        listener(e, src);
-      }, useCapture]);
-    };
 
-    this.detach = function (evtName, element, listener, capture) {
-      var evt = '';
-      var useCapture = (capture === undefined) ? true : capture;
+        listener(event, src);
+      };
 
-      if (window.removeEventListener === undefined) {
-        evt = 'on' + evtName;
-        element.detachEvent(evt, listener);
+      if (target.addEventListener) {
+        target.addEventListener(evt, handler, capture);
+      } else if (target.attachEvent) {
+        target.attachEvent('on' + evt, handler);
       } else {
-        evt = evtName;
-        element.removeEventListener(evt, listener, useCapture);
+        target['on' + evt] = handler;
       }
+
+      return handler;
     };
 
-    this.stop = function (evt) {
-      evt.cancelBubble = true;
+    this.detach = function (evt, ele, listener, capture) {
+      var target = ele || document;
 
-      if (evt.stopPropagation) {
-        evt.stopPropagation();
-      }
-    };
-
-    this.prevent = function (evt) {
-      if (evt.preventDefault) {
-        evt.preventDefault();
+      if (target.removeEventListener) {
+        target.removeEventListener(evt, listener, capture);
+      } else if (target.detachEvent) {
+        target.detachEvent('on' + evt, listener);
       } else {
-        evt.returnValue = false;
+        target['on' + evt] = undefined;
       }
+    };
+
+    this.stop = function (e) {
+      e.stopPropagation && e.stopPropagation();
+      e.cancelBubble = true;
+    };
+
+    this.prevent = function (e) {
+      e.preventDefault && e.preventDefault();
+      e.returnValue = false;
     };
   };
 
@@ -1721,58 +1713,105 @@ window.htmlRuler = /*  */ !(function () {
   };
 
   // 禁止滚动的函数
-  var MaskHelper = (function (fixCls) {
+  // 锁定滚动
+  var MaskHelper = (function (cls) {
+    cls || (cls = 'fixed-scroll-lock');
     var offset = {
       top: null,
       left: null
     };
-    var html = document.scrollingElement || document.documentElement;
-    var body = document.body;
 
-    if (!fixCls || typeof fixCls !== 'string') {
-      fixCls = '';
-    }
-    return {
-      isLock: function () {
-        var htmlClass = ' ' + html.className.replace(/\s+/g, ' ') + ' ';
-        var bodyClass = ' ' + body.className.replace(/\s+/g, ' ') + ' ';
-        var lockClass = ' ' + fixCls.replace(/\s+/g, ' ') + ' ';
-        return htmlClass.indexOf(lockClass) > -1 || bodyClass.indexOf(lockClass) > -1;
-      },
-      openMask: function () {
-        var root = document.scrollingElement;
-        if (!root) {
-          root = html.scrollHeight > body.scrollHeight ? html : body;
-        }
-        if (MaskHelper.isLock()) {
-          return;
-        }
+    var scrollInfo = function scrollInfo() {
+      var _document = document;
+      var html = _document.documentElement;
+      var head = _document.head;
+      var body = _document.body;
+      var element = _document.scrollingElement;
+      var wrap =
+        html.scrollHeight > body.scrollHeight ||
+        html.scrollWidth > body.scrollWidth
+          ? html
+          : body;
+      return {
+        html: html,
+        head: head,
+        body: body,
+        scroll: element || wrap
+      };
+    };
 
-        offset.top = root.scrollTop;
-        offset.left = root.scrollLeft;
+    var hasCls = function hasCls(element) {
+      var list = element.className.split(/\s+/);
+      return list.indexOf(cls) > -1;
+    };
 
-        html.classList.add(fixCls);
-        body.classList.add(fixCls);
+    var addCls = function addCls(element) {
+      if (hasCls(element)) {
+        return;
+      }
 
-        root.style.top = -offset.top + 'px';
-        root.style.left = -offset.left + 'px';
-      },
-      closeMask: function () {
-        if (!MaskHelper.isLock()) {
-          return;
-        }
+      var list = element.className.split(/\s+/);
+      element.className = list.concat(cls).join(' ');
+    };
 
-        html.classList.remove(fixCls);
-        body.classList.remove(fixCls);
+    var delCls = function delCls(element) {
+      if (!hasCls(element)) {
+        return;
+      }
 
+      var list = element.className.split(/\s+/);
+      var result = list.map(function (v) {
+        return v === cls ? '' : v;
+      });
+      element.className = result.join(' ');
+    };
+
+    var isLock = function isLock() {
+      var _scrollInfo = scrollInfo();
+      var html = _scrollInfo.html;
+      var body = _scrollInfo.body;
+
+      return hasCls(html) || hasCls(body);
+    };
+
+    var openLock = function openLock() {
+      if (!isLock()) {
+        var _scrollInfo2 = scrollInfo();
+        var html = _scrollInfo2.html;
+        var body = _scrollInfo2.body;
+        var scroll = _scrollInfo2.scroll;
+
+        offset.top = scroll.scrollTop;
+        offset.left = scroll.scrollLeft;
+        addCls(html);
+        addCls(body);
+        scroll.style.top = -offset.top + 'px';
+        scroll.style.left = -offset.left + 'px';
+      }
+    };
+
+    var closeLock = function closeLock() {
+      if (isLock()) {
+        var _scrollInfo3 = scrollInfo();
+        var html = _scrollInfo3.html;
+        var body = _scrollInfo3.body;
+
+        delCls(html);
+        delCls(body);
         html.scrollTop = offset.top;
         html.scrollLeft = offset.left;
         body.scrollTop = offset.top;
         body.scrollLeft = offset.left;
       }
     };
+
+    return {
+      isLock: isLock,
+      openMask: openLock,
+      closeMask: closeLock
+    };
   })('mask-back-fixed');
-    // 创建的函数
+  // 创建的函数
   var create = function (tag, html, attrs) {
     var element = document.createElement(tag || 'div');
     element.innerHTML = html || '';
@@ -1784,8 +1823,8 @@ window.htmlRuler = /*  */ !(function () {
     return element;
   };
   var getStyle = function (ele) {
-    return document.defaultView.getComputedStyle
-      ? document.defaultView.getComputedStyle(ele)
+    return window.getComputedStyle
+      ? window.getComputedStyle(ele)
       : ele.currentStyle;
   };
   var forloop = function (obj, key) {
